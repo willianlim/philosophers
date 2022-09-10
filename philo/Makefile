@@ -6,7 +6,7 @@
 #    By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 16:42:13 by wrosendo          #+#    #+#              #
-#    Updated: 2022/09/10 17:25:13 by wrosendo         ###   ########.fr        #
+#    Updated: 2022/09/10 17:30:01 by wrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJECTS_PARSE = $(addprefix $(OBJDIR)/, $(OBJPARSE))
 all: $(NAME)
 
 $(NAME): $(OBJECTS_PARSE)
-	@mkdir -p ./bin/
+	@mkdir -p $(DIRNAME)
 	$(CC) $(APP)/ft_philo.c -o $(NAME) $(OBJECTS_PARSE) -pthread
 
 $(OBJDIR)/%.o: $(SRCDIR_PARSE)/%.c
