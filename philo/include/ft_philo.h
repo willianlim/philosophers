@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:30:51 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/10 15:36:58 by wrosendo         ###   ########.fr       */
+/*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
+/*   Updated: 2022/09/10 20:58:48 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,19 @@
 # define WHITE "\e[37;1m"
 # define RESET "\e[0m"
 
-typedef struct	s_meal
+# define TRUE 1
+# define FALSE 0
+
+typedef enum s_identifier
+{
+	NUMBER_OF_PHILO = 1,
+	TIME_TO_DIE,
+	TIME_TO_EAT,
+	TIME_TO_SLEEP,
+	MEALS_PER_PERSON,
+}t_identifier;
+
+typedef struct s_meal
 {
 	int	number_of_philo;
 	int	time_to_die;
@@ -39,6 +51,25 @@ typedef struct	s_meal
 	int	meals_per_person;
 }t_meal;
 
-int	ft_handling_input(int argc, char *argv[]);
+/**
+ * @brief Converts the initial portion of the string pointed
+ * to by nptr to int. The behavior is the same as
+ * strdol(nptr, NULL, 10).
+ *
+ * @param nptr Pointer to the area of memory of the string
+ * to be converted
+ * @return int The converted value or 0 on error
+ */
+int	ft_atoi(const char *nptr);
+
+/**
+ * @brief 
+ *
+ * @param argc
+ * @param argv
+ * @param meal
+ * @return int
+ */
+int	ft_handling_input(int argc, char *argv[], t_meal *meal);
 
 #endif
