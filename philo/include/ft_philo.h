@@ -6,12 +6,12 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/10 20:58:48 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:08:28 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef FT_PHILO_H
+# define FT_PHILO_H
 
 # include <stdio.h>
 # include <string.h>
@@ -63,7 +63,7 @@ typedef struct s_meal
 int	ft_atoi(const char *nptr);
 
 /**
- * @brief 
+ * @brief
  *
  * @param argc
  * @param argv
