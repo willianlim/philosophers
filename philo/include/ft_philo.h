@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/10 21:08:28 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:41:21 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,25 @@ typedef enum s_identifier
 
 typedef struct s_meal
 {
-	int	number_of_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	meals_per_person;
+	int				number_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_per_person;
+	long long		start;
+	pthread_mutex_t	philo;
+	pthread_mutex_t	time;
+	pthread_mutex_t	*fork;
 }t_meal;
+
+typedef struct s_philo
+{
+	int			i;
+	pthread_t	thread;
+	pthread_t	monitoring;
+	t_meal		*meal;
+	long long	current;
+}t_philo;
 
 /**
  * @brief Converts the initial portion of the string pointed
@@ -71,5 +84,28 @@ int	ft_atoi(const char *nptr);
  * @return int
  */
 int	ft_handling_input(int argc, char *argv[], t_meal *meal);
+
+/**
+ * @brief
+ *
+ * @param meal
+ * @param philo
+ * @return int
+ */
+int	ft_prepare_diner(t_meal *meal, t_philo *philo[]);
+
+int	ft_start_diner(t_meal *meal, t_philo *philo);
+
+void	*ft_routine(void *arg);
+
+void	*ft_monitoring(void *arg);
+
+int	ft_stopwatch(long long *value);
+
+void	*ft_calloc(size_t nmemb, size_t size);
+
+void	ft_bzero(void *s, size_t n);
+
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif
