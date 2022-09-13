@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:33:15 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/10 20:54:13 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:09:12 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ static int	ft_init_struct(int index, char *argv, t_meal *meal)
 	if (number > 0)
 	{
 		if (index == NUMBER_OF_PHILO)
-			meal->number_of_philo = number;
+		{
+			if (number % 2 == 0)
+				meal->number_of_philo = number / 2;
+			else
+				return (FALSE);
+		}
 		if (index == TIME_TO_DIE)
 			meal->time_to_die = number;
 		if (index == TIME_TO_EAT)
@@ -48,6 +53,8 @@ static int	ft_integer_argument_values(int argc, char *argv[], t_meal *meal)
 			return (FALSE);
 	if (argc == with_optional_argv && !ft_init_struct(index, argv[index], meal))
 		return (FALSE);
+	else if (argc == mandatory_argv_total + 1)
+		meal->meals_per_person = -1;
 	return (TRUE);
 }
 
