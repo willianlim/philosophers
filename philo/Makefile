@@ -6,7 +6,7 @@
 #    By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 16:42:13 by wrosendo          #+#    #+#              #
-#    Updated: 2022/09/13 14:42:00 by wrosendo         ###   ########.fr        #
+#    Updated: 2022/09/14 07:10:13 by wrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCDIR_AUXLIB = ./sources/aux_library
 SRCDIR_EXECUTOR = ./sources/executor
 REMOVE = rm -rf
 
-SRC_EXECUTOR += ft_prepare_diner.c ft_start_diner.c
+SRC_EXECUTOR += ft_prepare_dinner.c ft_start_dinner.c
 OBJEXECUTOR = $(SRC_EXECUTOR:.c=.o)
 OBJECTS_EXECUTOR = $(addprefix $(OBJDIR)/, $(OBJEXECUTOR))
 

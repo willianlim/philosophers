@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prepare_diner.c                                 :+:      :+:    :+:   */
+/*   ft_prepare_dinner.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:36:39 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/13 16:31:00 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:09:04 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-int	ft_prepare_diner(t_meal *meal, t_philo **philo)
+int	ft_prepare_dinner(t_meal *meal, t_philo **philo)
 {
 	int	i;
 

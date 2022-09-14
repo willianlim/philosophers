@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_start_diner.c                                   :+:      :+:    :+:   */
+/*   ft_start_dinner.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_philo.h"
 
-int	ft_start_diner(t_meal *meal, t_philo *philo)
+int	ft_start_dinner(t_meal *meal, t_philo *philo)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/13 14:41:21 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:10:13 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	ft_handling_input(int argc, char *argv[], t_meal *meal);
  * @param philo
  * @return int
  */
-int	ft_prepare_diner(t_meal *meal, t_philo *philo[]);
+int	ft_prepare_dinner(t_meal *meal, t_philo *philo[]);
 
-int	ft_start_diner(t_meal *meal, t_philo *philo);
+int	ft_start_dinner(t_meal *meal, t_philo *philo);
 
 void	*ft_routine(void *arg);
 
