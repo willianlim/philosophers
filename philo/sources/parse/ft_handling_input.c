@@ -6,13 +6,13 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:33:15 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/14 10:40:04 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:02:01 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-static int	ft_init_struct(int index, char *argv, t_meal *meal)
+static int	ft_init_struct(int index, char *argv, t_data *data)
 {
 	int	number;
 
@@ -20,21 +20,21 @@ static int	ft_init_struct(int index, char *argv, t_meal *meal)
 	if (number > 0)
 	{
 		if (index == NUMBER_OF_PHILO)
-			meal->number_of_philo = number;
+			data->number_of_philo = number;
 		if (index == TIME_TO_DIE)
-			meal->time_to_die = number;
+			data->time_to_die = number;
 		if (index == TIME_TO_EAT)
-			meal->time_to_eat = number;
+			data->time_to_eat = number;
 		if (index == TIME_TO_SLEEP)
-			meal->time_to_sleep = number;
+			data->time_to_sleep = number;
 		if (index == MEALS_PER_PERSON)
-			meal->meals_per_person = number;
+			data->meals_per_person = number;
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-static int	ft_integer_argument_values(int argc, char *argv[], t_meal *meal)
+static int	ft_integer_argument_values(int argc, char *argv[], t_data *data)
 {
 	int	index;
 	int	with_optional_argv;
@@ -44,21 +44,27 @@ static int	ft_integer_argument_values(int argc, char *argv[], t_meal *meal)
 	with_optional_argv = 6;
 	mandatory_argv_total = 4;
 	while (++index <= mandatory_argv_total)
-		if (!ft_init_struct(index, argv[index], meal))
+		if (!ft_init_struct(index, argv[index], data))
 			return (FALSE);
-	if (argc == with_optional_argv && !ft_init_struct(index, argv[index], meal))
+	if (argc == with_optional_argv && !ft_init_struct(index, argv[index], data))
 		return (FALSE);
 	else if (argc == mandatory_argv_total + 1)
-		meal->meals_per_person = -1;
+		data->meals_per_person = -1;
 	return (TRUE);
 }
 
-int	ft_handling_input(int argc, char *argv[], t_meal *meal)
+int	ft_handling_input(int argc, char *argv[], t_data *data)
 {
-	if (argc < 5 || argc > 6 || !ft_integer_argument_values(argc, argv, meal))
+	if (argc < 5 || argc > 6)
 	{
 		printf(RED"Error: Number of arguments not allowed\n"RESET);
-		exit(EXIT_FAILURE);
+		return (FALSE);
+	}
+	if (!ft_integer_argument_values(argc, argv, data))
+	{
+		printf(RED"Error: "RESET);
+		printf(RED"One of the values entered is not a positive integer\n"RESET);
+		return (FALSE);
 	}
 	return (TRUE);
 }
