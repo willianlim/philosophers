@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:30:45 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/14 07:10:13 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:03:31 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char *argv[])
 {
-	t_meal	meal;
-	t_philo	*philo;
+	t_data			data;
+	t_philosopher	philo;
 
-	philo = NULL;
-	memset(&meal, 0, sizeof(t_meal));
-	ft_handling_input(argc, argv, &meal);
-	ft_prepare_dinner(&meal, &philo);
-	ft_start_dinner(&meal, philo);
+	memset(&data, 0, sizeof(t_data));
+	ft_handling_input(argc, argv, &data);
+	ft_prepare_dinner(&data);
+	ft_start_dinner(&data, &philo);
+	ft_end_dinner(&data, &philo);
 	return (0);
 }
