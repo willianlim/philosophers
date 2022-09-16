@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/15 22:15:51 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:50:28 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_start_dinner(t_data *data, t_philosopher *philo);
 
 void	*ft_routine(void *arg);
 
-void	ft_monitoring(t_data *data, t_philosopher *philo);
+int	ft_monitoring(t_data *data, t_philosopher *philo);
 
 int	ft_end_dinner(t_data *data, t_philosopher *philo);
 
