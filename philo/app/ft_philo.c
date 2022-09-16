@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:30:45 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/15 22:03:31 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:09:05 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char *argv[])
 	ft_handling_input(argc, argv, &data);
 	ft_prepare_dinner(&data);
 	ft_start_dinner(&data, &philo);
-	ft_end_dinner(&data, &philo);
+	// ft_end_dinner(&data, &philo);
 	return (0);
 }
