@@ -6,7 +6,7 @@
 #    By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 16:42:13 by wrosendo          #+#    #+#              #
-#    Updated: 2022/09/15 22:27:14 by wrosendo         ###   ########.fr        #
+#    Updated: 2022/09/20 10:14:42 by wrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ RESET = "\e[0m"
 # ============================ Command Variables ============================= #
 # ============================================================================ #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -O3
+CC = cc -g
+CFLAGS = -Wall -Wextra -Werror
 REMOVE = rm -rf
 
 # ============================================================================ #
@@ -50,7 +50,7 @@ OBJEXECUTOR = $(SRC_EXECUTOR:.c=.o)
 OBJECTS_EXECUTOR = $(addprefix $(OBJDIR)/, $(OBJEXECUTOR))
 
 SRC_AUXLIB += ft_atoi.c ft_stopwatch.c ft_elapsed_time_sleep.c
-SRC_AUXLIB += ft_routine.c ft_monitoring.c ft_action_print.c
+SRC_AUXLIB += ft_routine.c ft_monitoring.c ft_action_print.c ft_strcmp.c
 OBJAUXLIB = $(SRC_AUXLIB:.c=.o)
 OBJECTS_AUXLIB = $(addprefix $(OBJDIR)/, $(OBJAUXLIB))
 
