@@ -6,47 +6,50 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:58:46 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/16 13:50:12 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/20 17:12:34 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-int	ft_monitoring(t_data *data, t_philosopher *philo)
+void	*ft_monitoring_each_must_each(void *arg)
 {
-	int			i;
-	long long	current;
+	t_rules	*rules;
 
-	while (!data->all_ate)
+	rules = (t_rules *)arg;
+	while (!rules->finish)
 	{
-		i = -1;
-		while (++i < data->number_of_philo && !data->dieded)
-		{
-			pthread_mutex_lock(&data->lock_dinner);
-			ft_stopwatch(&current);
-			if ((current - philo[i].last_meal) > data->time_to_die)
-			{
-				ft_action_print(data, i, "died\n");
-				data->dieded = TRUE;
-				// data->all_ate = TRUE;
-				return (FALSE);
-			}
-			pthread_mutex_unlock(&data->lock_dinner);
-			printf("sai do if\n");
-			// usleep(100);
-		}
-		if (data->dieded)
-		{
-			printf("entrei no if do died\n");
-			return (FALSE);
-		}
-		i = 0;
-		while (data->meals_per_person != -1 && i < data->number_of_philo && \
-		philo[i].meals_eaten >= data->meals_per_person)
-			i++;
-		if (i == data->number_of_philo)
-			data->all_ate = TRUE;
+		pthread_mutex_lock(&rules->philosophers->check_mutex);
+		pthread_mutex_lock(&rules->philosophers->rules->finish_mutex);
+		if (rules->number_of_eat_finish_philo == rules->number_of_philo)
+			rules->finish = TRUE;
+		pthread_mutex_unlock(&rules->philosophers->check_mutex);
+		pthread_mutex_unlock(&rules->philosophers->rules->finish_mutex);
 	}
-	printf("sai do monitoring \n");
-	return (TRUE);
+	return (NULL);
+}
+
+void	*ft_monitoring(void *arg)
+{
+	long long		current;
+	t_philosopher	*philo;
+
+	philo = (t_philosopher *)arg;
+	while (!philo->rules->finish)
+	{
+		pthread_mutex_lock(&philo->check_mutex);
+		pthread_mutex_lock(&philo->rules->finish_mutex);
+		ft_stopwatch(&current);
+		if ((current - philo->last_time_to_eat) >= philo->rules->time_to_die \
+			&& !philo->rules->finish)
+		{
+			printf("%lli\t", current - philo->rules->starting_stopwatch);
+			printf("%i\t", philo->id + 1);
+			printf(RED"died\n"RESET);
+			philo->rules->finish = TRUE;
+		}
+		pthread_mutex_unlock(&philo->check_mutex);
+		pthread_mutex_unlock(&philo->rules->finish_mutex);
+	}
+	return (NULL);
 }
