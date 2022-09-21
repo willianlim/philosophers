@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/16 13:50:28 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/20 17:08:28 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define TRUE 1
 # define FALSE 0
 
-struct s_data;
+struct s_rules;
 
 typedef enum s_identifier
 {
@@ -48,28 +48,63 @@ typedef struct s_philosopher
 {
 	int				id;
 	int				meals_eaten;
-	int				left_fork;
-	int				right_fork;
-	long long		last_meal;
-	struct s_data	*data;
-	pthread_t		thread;
+	long long		last_time_to_eat;
+	pthread_t		thread_id;
+	pthread_t		monitoring_id;
+	pthread_mutex_t	check_mutex;
+	struct s_rules	*rules;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }t_philosopher;
 
-typedef struct s_data
+typedef struct s_rules
 {
 	int				number_of_philo;
+	int				number_of_eat_finish_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				meals_per_person;
-	int				dieded;
-	int				all_ate;
+	int				meals_per_philo;
+	int				finish;
 	long long		starting_stopwatch;
-	pthread_mutex_t	lock_print;
-	pthread_mutex_t	lock_dinner;
-	pthread_mutex_t	*fork;
-	t_philosopher	*philosopher;
-}t_data;
+	pthread_mutex_t	finish_mutex;
+	pthread_mutex_t	*forks;
+	t_philosopher	*philosophers;
+}t_rules;
+
+/**
+ * @brief
+ *
+ * @param argc
+ * @param argv
+ * @param meal
+ * @return int
+ */
+int	ft_handling_input(int argc, char *argv[], t_rules *rules);
+
+/**
+ * @brief
+ *
+ * @param meal
+ * @return int
+ */
+int	ft_prepare_dinner(t_rules *rules);
+
+int	ft_start_dinner(t_rules *rules);
+
+void	*ft_routine(void *arg);
+
+void	*ft_monitoring(void *arg);
+
+void	*ft_monitoring_each_must_each(void *arg);
+
+int	ft_end_dinner(t_rules *rules);
+
+int	ft_stopwatch(long long *value);
+
+void	ft_elapsed_time_sleep(int	time_to_sleep, t_rules *rules);
+
+void	ft_action_print(t_philosopher *philo, char *string);
 
 /**
  * @brief Converts the initial portion of the string pointed
@@ -82,42 +117,6 @@ typedef struct s_data
  */
 int	ft_atoi(const char *nptr);
 
-/**
- * @brief
- *
- * @param argc
- * @param argv
- * @param meal
- * @return int
- */
-int	ft_handling_input(int argc, char *argv[], t_data *data);
-
-/**
- * @brief
- *
- * @param meal
- * @return int
- */
-int	ft_prepare_dinner(t_data *data);
-
-int	ft_start_dinner(t_data *data, t_philosopher *philo);
-
-void	*ft_routine(void *arg);
-
-int	ft_monitoring(t_data *data, t_philosopher *philo);
-
-int	ft_end_dinner(t_data *data, t_philosopher *philo);
-
-int	ft_stopwatch(long long *value);
-
-void	ft_elapsed_time_sleep(int	time_to_sleep, t_data *data);
-
-void	ft_action_print(t_data *data, int id, char *string);
-
-void	*ft_calloc(size_t nmemb, size_t size);
-
-void	ft_bzero(void *s, size_t n);
-
-void	*ft_memset(void *s, int c, size_t n);
+int	ft_strcmp(const char *s1, const char *s2);
 
 #endif
