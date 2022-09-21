@@ -6,23 +6,35 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:42:44 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/15 22:18:03 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:08:14 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-void	ft_action_print(t_data *data, int id, char *string)
+static void	ft_coloring_print(char *str)
+{
+	if (!ft_strcmp(str, "has taken a fork\n"))
+		printf(YELLOW"has taken a fork\n"RESET);
+	else if (!ft_strcmp(str, "is sleeping\n"))
+		printf(CYAN"is sleeping\n"RESET);
+	else if (!ft_strcmp(str, "is thinking\n"))
+		printf(MAGENTA"is thinking\n"RESET);
+	else
+		printf(RED"died\n"RESET);
+}
+
+void	ft_action_print(t_philosopher *philo, char *string)
 {
 	long long	current;
 
-	pthread_mutex_lock(&data->lock_print);
-	if (!data->dieded)
+	pthread_mutex_lock(&philo->rules->finish_mutex);
+	ft_stopwatch(&current);
+	if (!philo->rules->finish)
 	{
-		ft_stopwatch(&current);
-		printf("%lli ", current - data->starting_stopwatch);
-		printf("%i ", id + 1);
-		printf("%s", string);
+		printf("%lli\t", current - philo->rules->starting_stopwatch);
+		printf("%i\t", philo->id + 1);
+		ft_coloring_print(string);
 	}
-	pthread_mutex_unlock(&data->lock_print);
+	pthread_mutex_unlock(&philo->rules->finish_mutex);
 }
