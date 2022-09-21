@@ -6,68 +6,66 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:36:39 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/15 18:22:23 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/20 17:07:02 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-static int	ft_init_forks(t_data *data)
+// static int	ft_init_forks(t_rules *rules)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	rules->forks = (pthread_mutex_t *)malloc(rules->number_of_philo *
+// 		sizeof(pthread_mutex_t));
+// 	if (rules->forks == NULL)
+// 	{
+// 		printf(RED"Failed to alloc forks\n"RESET);
+// 		return (FALSE);
+// 	}
+// 	while (++i < rules->number_of_philo)
+// 	{
+// 		if (pthread_mutex_init(&rules->forks[i], NULL))
+// 		{
+// 			printf(RED"Failed to init mutex forks\n"RESET);
+// 			return (FALSE);
+// 		}
+// 	}
+// 	return (TRUE);
+// }
+
+static int	ft_init_philosophers(t_rules *rules)
 {
 	int	i;
 
 	i = -1;
-	data->fork = (pthread_mutex_t *)malloc(data->number_of_philo * \
-	sizeof(pthread_mutex_t));
-	if (data->fork == NULL)
-	{
-		printf(RED"Failed to alloc forks\n"RESET);
-		return (FALSE);
-	}
-	while (++i < data->number_of_philo)
-	{
-		if (pthread_mutex_init(&data->fork[i], NULL))
-		{
-			printf(RED"Failed to init mutex fork\n"RESET);
-			return (FALSE);
-		}
-	}
-	if (pthread_mutex_init(&data->lock_print, NULL) || \
-	pthread_mutex_init(&data->lock_dinner, NULL))
-	{
-		printf(RED"Failed to init mutex 'lock_print' or 'lock_dinner'\n"RESET);
-		return (FALSE);
-	}
-	return (TRUE);
-}
-
-static int	ft_init_philosophers(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	data->philosopher = (t_philosopher *)malloc(data->number_of_philo * \
-	sizeof(t_philosopher));
-	if (data->philosopher == NULL)
+	rules->philosophers = (t_philosopher *)malloc(rules->number_of_philo * \
+		sizeof(t_philosopher));
+	rules->forks = (pthread_mutex_t *)malloc(rules->number_of_philo * \
+		sizeof(pthread_mutex_t));
+	if (rules->philosophers == NULL)
 	{
 		printf(RED"Failed to alloc philosophers\n"RESET);
 		return (FALSE);
 	}
-	while (++i < data->number_of_philo)
+	while (++i < rules->number_of_philo)
 	{
-		data->philosopher[i].id = i;
-		data->philosopher[i].meals_eaten = 0;
-		data->philosopher[i].left_fork = i;
-		data->philosopher[i].right_fork = (i + 1) % data->number_of_philo;
-		data->philosopher[i].last_meal = 0;
-		data->philosopher[i].data = data;
+		pthread_mutex_init(&rules->forks[i], NULL);
+		pthread_mutex_init(&rules->philosophers[i].check_mutex, NULL);
+		rules->philosophers[i].id = i;
+		rules->philosophers[i].left_fork = &rules->forks[i];
+		rules->philosophers[i].right_fork = \
+			&rules->forks[(i + 1) % rules->number_of_philo];
+		rules->philosophers[i].rules = rules;
 	}
 	return (TRUE);
 }
 
-int	ft_prepare_dinner(t_data *data)
+int	ft_prepare_dinner(t_rules *rules)
 {
-	if (!ft_init_forks(data) || !ft_init_philosophers(data))
+	pthread_mutex_init(&rules->finish_mutex, NULL);
+	if (!ft_init_philosophers(rules))
 		return (FALSE);
 	return (TRUE);
 }
