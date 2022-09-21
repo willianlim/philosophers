@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:58:46 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/20 17:12:34 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:24:53 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	*ft_monitoring_each_must_each(void *arg)
 	rules = (t_rules *)arg;
 	while (!rules->finish)
 	{
-		pthread_mutex_lock(&rules->philosophers->check_mutex);
-		pthread_mutex_lock(&rules->philosophers->rules->finish_mutex);
+		pthread_mutex_lock(&rules->finish_mutex);
 		if (rules->number_of_eat_finish_philo == rules->number_of_philo)
 			rules->finish = TRUE;
-		pthread_mutex_unlock(&rules->philosophers->check_mutex);
-		pthread_mutex_unlock(&rules->philosophers->rules->finish_mutex);
+		pthread_mutex_unlock(&rules->finish_mutex);
 	}
 	return (NULL);
 }
@@ -48,8 +46,8 @@ void	*ft_monitoring(void *arg)
 			printf(RED"died\n"RESET);
 			philo->rules->finish = TRUE;
 		}
-		pthread_mutex_unlock(&philo->check_mutex);
 		pthread_mutex_unlock(&philo->rules->finish_mutex);
+		pthread_mutex_unlock(&philo->check_mutex);
 	}
 	return (NULL);
 }
