@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/20 17:08:28 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:13:02 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define TRUE 1
 # define FALSE 0
 
-struct s_rules;
+struct	s_rules;
 
 typedef enum s_identifier
 {
@@ -80,7 +80,7 @@ typedef struct s_rules
  * @param meal
  * @return int
  */
-int	ft_handling_input(int argc, char *argv[], t_rules *rules);
+int		ft_handling_input(int argc, char *argv[], t_rules *rules);
 
 /**
  * @brief
@@ -88,9 +88,9 @@ int	ft_handling_input(int argc, char *argv[], t_rules *rules);
  * @param meal
  * @return int
  */
-int	ft_prepare_dinner(t_rules *rules);
+int		ft_prepare_dinner(t_rules *rules);
 
-int	ft_start_dinner(t_rules *rules);
+int		ft_start_dinner(t_rules *rules);
 
 void	*ft_routine(void *arg);
 
@@ -98,11 +98,9 @@ void	*ft_monitoring(void *arg);
 
 void	*ft_monitoring_each_must_each(void *arg);
 
-int	ft_end_dinner(t_rules *rules);
+int		ft_end_dinner(t_rules *rules);
 
-int	ft_stopwatch(long long *value);
-
-void	ft_elapsed_time_sleep(int	time_to_sleep, t_rules *rules);
+int		ft_stopwatch(long long *value);
 
 void	ft_action_print(t_philosopher *philo, char *string);
 
@@ -115,8 +113,8 @@ void	ft_action_print(t_philosopher *philo, char *string);
  * to be converted
  * @return int The converted value or 0 on error
  */
-int	ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
 
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
