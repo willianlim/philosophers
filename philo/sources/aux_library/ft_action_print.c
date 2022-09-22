@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 20:42:44 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/20 11:08:14 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:32:55 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ static void	ft_coloring_print(char *str)
 		printf(CYAN"is sleeping\n"RESET);
 	else if (!ft_strcmp(str, "is thinking\n"))
 		printf(MAGENTA"is thinking\n"RESET);
+	else if (!ft_strcmp(str, "is eating\n"))
+		printf(GREEN"is eating\n"RESET);
 	else
 		printf(RED"died\n"RESET);
 }
 
 void	ft_action_print(t_philosopher *philo, char *string)
 {
-	long long	current;
+	long	current;
 
-	pthread_mutex_lock(&philo->rules->finish_mutex);
 	ft_stopwatch(&current);
+	pthread_mutex_lock(&philo->rules->finish_mutex);
 	if (!philo->rules->finish)
 	{
-		printf("%lli\t", current - philo->rules->starting_stopwatch);
+		printf("%li\t", current - philo->rules->starting_stopwatch);
 		printf("%i\t", philo->id + 1);
 		ft_coloring_print(string);
 	}
