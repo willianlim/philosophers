@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:36:39 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/21 11:58:31 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 09:35:19 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static int	ft_init_philosophers(t_rules *rules)
 		rules->philosophers[i].id = i;
 		rules->philosophers[i].meals_eaten = 0;
 		rules->philosophers[i].left_fork = &rules->forks[i];
-		rules->philosophers[i].right_fork = &rules->forks[(i + 1) 
-			% rules->number_of_philo];
+		rules->philosophers[i].right_fork = &rules->forks[(i + 1) % rules->number_of_philo];
 		rules->philosophers[i].rules = rules;
 	}
 	return (TRUE);
