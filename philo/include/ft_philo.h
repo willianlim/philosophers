@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/22 12:01:23 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:28:53 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_philosopher
 {
 	int				id;
 	int				meals_eaten;
-	long long		last_time_to_eat;
+	long			last_time_to_eat;
 	pthread_t		thread_id;
 	pthread_t		monitoring_id;
 	pthread_mutex_t	check_mutex;
@@ -66,7 +66,7 @@ typedef struct s_rules
 	int				time_to_sleep;
 	int				meals_per_philo;
 	int				finish;
-	long long		starting_stopwatch;
+	long			starting_stopwatch;
 	pthread_mutex_t	finish_mutex;
 	pthread_mutex_t	*forks;
 	t_philosopher	*philosophers;
@@ -100,7 +100,7 @@ void	*ft_monitoring_each_must_each(void *arg);
 
 int		ft_end_dinner(t_rules *rules);
 
-int		ft_stopwatch(long long *value);
+int		ft_stopwatch(long *value);
 
 void	ft_action_print(t_philosopher *philo, char *string);
 
