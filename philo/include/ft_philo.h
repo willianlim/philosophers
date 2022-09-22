@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/21 12:13:02 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:01:23 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,17 @@ void	ft_action_print(t_philosopher *philo, char *string);
 int		ft_atoi(const char *nptr);
 
 int		ft_strcmp(const char *s1, const char *s2);
+
+void	ft_elapsed_time_sleep(int time_to_sleep);
+
+void	ft_take_fork(t_philosopher *philo);
+
+void	ft_eat(t_philosopher *philo);
+
+void	ft_put_fork(t_philosopher *philo);
+
+void	ft_sleep(t_philosopher *philo);
+
+void	ft_think(t_philosopher *philo);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 16:42:13 by wrosendo          #+#    #+#              #
-#    Updated: 2022/09/21 12:29:52 by wrosendo         ###   ########.fr        #
+#    Updated: 2022/09/22 12:00:20 by wrosendo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,8 @@ SRC_EXECUTOR += ft_start_dinner.c ft_end_dinner.c
 OBJEXECUTOR = $(SRC_EXECUTOR:.c=.o)
 OBJECTS_EXECUTOR = $(addprefix $(OBJDIR)/, $(OBJEXECUTOR))
 
-SRC_AUXLIB += ft_atoi.c ft_stopwatch.c ft_routine.c
-SRC_AUXLIB += ft_monitoring.c ft_action_print.c ft_strcmp.c
+SRC_AUXLIB += ft_atoi.c ft_stopwatch.c ft_routine.c ft_elapsed_time_sleep.c
+SRC_AUXLIB += ft_monitoring.c ft_action_print.c ft_strcmp.c ft_life_cycle.c
 OBJAUXLIB = $(SRC_AUXLIB:.c=.o)
 OBJECTS_AUXLIB = $(addprefix $(OBJDIR)/, $(OBJAUXLIB))
 
