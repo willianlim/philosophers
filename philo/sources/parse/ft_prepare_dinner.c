@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:36:39 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/22 09:35:19 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:18:44 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ static int	ft_init_forks(t_rules *rules)
 static int	ft_init_philosophers(t_rules *rules)
 {
 	int	i;
+	int	aux;
 
 	i = -1;
 	rules->philosophers = (t_philosopher *)malloc(rules->number_of_philo * \
 		sizeof(t_philosopher));
 	if (rules->philosophers == NULL)
 	{
-		puts("deui ruim na alocação do philo");
+		printf(RED"Failed to alloc philosophers\n"RESET);
 		return (FALSE);
 	}
 	while (++i < rules->number_of_philo)
@@ -53,7 +54,8 @@ static int	ft_init_philosophers(t_rules *rules)
 		rules->philosophers[i].id = i;
 		rules->philosophers[i].meals_eaten = 0;
 		rules->philosophers[i].left_fork = &rules->forks[i];
-		rules->philosophers[i].right_fork = &rules->forks[(i + 1) % rules->number_of_philo];
+		aux = (i + 1) % rules->number_of_philo;
+		rules->philosophers[i].right_fork = &rules->forks[aux];
 		rules->philosophers[i].rules = rules;
 	}
 	return (TRUE);
@@ -64,5 +66,6 @@ int	ft_prepare_dinner(t_rules *rules)
 	pthread_mutex_init(&rules->finish_mutex, NULL);
 	if (!ft_init_forks(rules) || !ft_init_philosophers(rules))
 		return (FALSE);
+	ft_stopwatch(&rules->starting_stopwatch);
 	return (TRUE);
 }
