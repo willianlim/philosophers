@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:31:22 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/22 15:28:53 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:05:11 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,61 +72,36 @@ typedef struct s_rules
 	t_philosopher	*philosophers;
 }t_rules;
 
-/**
- * @brief
- *
- * @param argc
- * @param argv
- * @param meal
- * @return int
- */
-int		ft_handling_input(int argc, char *argv[], t_rules *rules);
-
-/**
- * @brief
- *
- * @param meal
- * @return int
- */
-int		ft_prepare_dinner(t_rules *rules);
-
-int		ft_start_dinner(t_rules *rules);
-
-void	*ft_routine(void *arg);
-
-void	*ft_monitoring(void *arg);
-
-void	*ft_monitoring_each_must_each(void *arg);
-
-int		ft_end_dinner(t_rules *rules);
-
-int		ft_stopwatch(long *value);
+//============================================================================//
+//================================ Aux Library ===============================//
+//============================================================================//
 
 void	ft_action_print(t_philosopher *philo, char *string);
-
-/**
- * @brief Converts the initial portion of the string pointed
- * to by nptr to int. The behavior is the same as
- * strdol(nptr, NULL, 10).
- *
- * @param nptr Pointer to the area of memory of the string
- * to be converted
- * @return int The converted value or 0 on error
- */
 int		ft_atoi(const char *nptr);
-
+void	ft_elapsed_time_sleep(int time_to_sleep);
+void	ft_take_fork(t_philosopher *philo);
+void	ft_eat(t_philosopher *philo);
+void	ft_put_fork(t_philosopher *philo);
+void	ft_sleep(t_philosopher *philo);
+void	ft_think(t_philosopher *philo);
+void	*ft_monitoring_each_must_each(void *arg);
+void	*ft_monitoring(void *arg);
+void	*ft_routine(void *arg);
+int		ft_stopwatch(long *value);
 int		ft_strcmp(const char *s1, const char *s2);
 
-void	ft_elapsed_time_sleep(int time_to_sleep);
+//============================================================================//
+//================================ Aux Library ===============================//
+//============================================================================//
 
-void	ft_take_fork(t_philosopher *philo);
+int		ft_end_dinner(t_rules *rules);
+int		ft_start_dinner(t_rules *rules);
 
-void	ft_eat(t_philosopher *philo);
+//============================================================================//
+//================================ Aux Library ===============================//
+//============================================================================//
 
-void	ft_put_fork(t_philosopher *philo);
-
-void	ft_sleep(t_philosopher *philo);
-
-void	ft_think(t_philosopher *philo);
+int		ft_handling_input(int argc, char *argv[], t_rules *rules);
+int		ft_prepare_dinner(t_rules *rules);
 
 #endif
