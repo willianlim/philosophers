@@ -6,7 +6,7 @@
 /*   By: wrosendo <wrosendo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:50:46 by wrosendo          #+#    #+#             */
-/*   Updated: 2022/09/22 12:18:16 by wrosendo         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:05:41 by wrosendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	ft_start_dinner(t_rules *rules)
 		pthread_detach(rules->philosophers->monitoring_id);
 		pthread_join(rules->philosophers->monitoring_id, NULL);
 	}
-	ft_end_dinner(rules);
 	return (TRUE);
 }
