@@ -11,7 +11,17 @@ git clone https://github.com/willianlim/philosophers
 ## ✍ Usage
 
 ```C
-algo
+# Entering the project directory
+cd philosophers && cd philo
+
+# Compiling the program
+make
+
+# Example of arguments that can be used to compile the program
+./bin/philo 5 800 200 200
+
+# Exclude the objects
+make fclean
 ```
 
 
